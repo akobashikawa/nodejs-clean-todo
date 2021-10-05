@@ -21,20 +21,32 @@ const todoService = {
     return id;
   },
 
-  getItems() {
-    return this.items;
+  async getItems() {
+    try {
+      return this.items;
+    } catch (error) {
+      throw error;
+    }
   },
 
-  getItem(id) {
-    const found = this.items.find(item => (id === item.id));
-    // console.log(found, !found, !!found);
-    return found;
+  async getItem(id) {
+    try {
+      const found = this.items.find((item) => id === item.id);
+      // console.log(found, !found, !!found);
+      return found;
+    } catch (error) {
+      throw error;
+    }
   },
 
   postItem(newItem) {
-    newItem.id = this.getNewId();
-    this.items.push(newItem);
-    return newItem;
+    try {
+      newItem.id = this.getNewId();
+      this.items.push(newItem);
+      return newItem;
+    } catch (error) {
+      throw error;
+    }
   },
 };
 

@@ -7,19 +7,31 @@ const todoController = {
     return obj;
   },
 
-  getItems() {
-    const items = this.todoService.getItems();
-    return items;
+  async getItems() {
+    try {
+      const items = await this.todoService.getItems();
+      return items;
+    } catch (error) {
+      throw error;
+    }
   },
 
-  postItem(newItem) {
-    const result = this.todoService.postItem(newItem);
-    return result;
+  async postItem(newItem) {
+    try {
+      const result = await this.todoService.postItem(newItem);
+      return result;
+    } catch (error) {
+      throw error;
+    }
   },
 
-  getItem(id) {
-    const item = this.todoService.getItem(id);
-    return item;
+  async getItem(id) {
+    try {
+      const item = await this.todoService.getItem(id);
+      return item;
+    } catch (error) {
+      throw error;
+    }
   },
 };
 
