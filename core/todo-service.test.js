@@ -1,7 +1,11 @@
 const todoService = require('./todo-service').create();
 
-test('return unique id', () => {
+test('return unique id', async () => {
   const id = todoService.getNewId();
-  const found = todoService.getItem(id);
-  expect(!!found).toBe(false);
+  try {
+    const found = await todoService.getItem(id);
+    expect(!!found).toBe(false);
+  } catch (error) {
+    expect(error).toMatch("error");
+  }
 });

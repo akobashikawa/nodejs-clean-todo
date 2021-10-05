@@ -15,4 +15,14 @@ app.get('/', (req, res) => {
   res.send('Clean To Do @expressjs');
 });
 
+// error handler
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  const result = {};
+  if (err.message) {
+    result.message = err.message;
+  }
+  res.json(result);
+});
+
 module.exports = app;

@@ -7,6 +7,15 @@ const todoController = {
     return obj;
   },
 
+  async getItem(id) {
+    try {
+      const item = await this.todoService.getItem(id);
+      return item;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   async getItems() {
     try {
       const items = await this.todoService.getItems();
@@ -20,15 +29,6 @@ const todoController = {
     try {
       const result = await this.todoService.postItem(newItem);
       return result;
-    } catch (error) {
-      throw error;
-    }
-  },
-
-  async getItem(id) {
-    try {
-      const item = await this.todoService.getItem(id);
-      return item;
     } catch (error) {
       throw error;
     }

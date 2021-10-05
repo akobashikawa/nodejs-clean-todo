@@ -1,5 +1,6 @@
 const express = require('express');
 const todoRouter = express.Router();
+const _ = require('lodash');
 
 const todoService = require('../core/todo-service').create();
 const todoController = require('../core/todo-controller').create({todoService});
@@ -8,48 +9,42 @@ todoRouter.get('/', function(req, res) {
   res.send('To Do');
 });
 
-todoRouter.get('/items/:id', async function(req, res) {
+todoRouter.get('/items/:id', async function(req, res, next) {
   const id = req.params.id;
   try {
     const item = await todoController.getItem(id);
     res.json(item);
   } catch (error) {
-    res.status(500).json({
-      message: "error getting item",
-      id,
-    });
+    next(error);
   }
 
 });
 
-todoRouter.get('/items', async function(req, res) {
+todoRouter.get('/items', async function(req, res, next) {
   try {
     const items = await todoController.getItems();
     res.json(items);
   } catch (error) {
-    res.status(500).json({
-      message: 'error getting items',
-    });
+    next(error);
   }
 });
 
-todoRouter.post('/items', async function(req, res) {
-  const newItem = req.body;
-  if (!newItem) {
-    return res.status(400).json({
-      message: "newItem is required",
-      newItem,
-    });
-  }
-
+todoRouter.post('/items', async function(req, res, next) {
   try {
+    const newItem = req.body;
+    console.log(!newItem);
+    if (_.isEmpty(newItem)) {
+      throw {
+        status: 400,
+        message: "newItem is required",
+        newItem,
+      };
+    }
+  
     const item = await todoController.postItem(newItem);
     res.json(item);
   } catch (error) {
-    res.status(500).json({
-      message: "error posting item",
-      item: newItem,
-    });    
+    next(error);
   }
 });
 
