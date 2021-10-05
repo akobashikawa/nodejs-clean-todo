@@ -1,14 +1,14 @@
-# Clean To Do - Express
+# Clean To Do
 
-Aplica Clean Architecture para el backend de una app To Do.
+Node clean architecture studio.
 
 ## Idea
-- core/ contiene código que es agnóstico del framework
-  - core/hello-controller.js es un controlador
-  - core/todo-controller.js es un controlador
-  - core/todo-service.js es un proveedor de servicios para el controlador
-- express/app.js es el módulo que usa a expressjs como framework
-  - express/hello es un middleware
-    - express/hello.js es el adaptador de los controladores con el framework
-  - express/todo es un middleware
-    - express/todo.js es el adaptador de los controladores con el framework
+- core/ is for framework agnostic code
+  - core/hello-controller.js is a controller
+  - core/todo-controller.js is a controller
+  - core/todo-service.js is a service provider for controllers
+- express/app.js uses expressjs as framework
+  - express/hello is a middleware
+    - express/hello.js is an adapter controller-framework
+  - express/todo is a middleware
+    - express/todo.js is an adapter controller-framework
