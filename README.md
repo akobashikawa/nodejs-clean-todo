@@ -2,7 +2,11 @@
 
 Node clean architecture studio.
 
-## Idea
+## Ideas
+- Centralize business logic so that it is framework agnostic
+- Use adapters between code agnostic and framework
+
+## Map
 - core/ is for framework agnostic code
   - core/hello-controller.js is a controller
   - core/todo-controller.js is a controller
