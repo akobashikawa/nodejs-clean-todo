@@ -1,0 +1,11 @@
+{
+  "name": "clean-todo-cli",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^27.2.0"
+  }
+}
