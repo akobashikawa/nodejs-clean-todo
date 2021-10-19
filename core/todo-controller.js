@@ -33,6 +33,14 @@ const todoController = {
       throw error;
     }
   },
+
+  async deleteItem(id) {
+    try {
+      await this.todoService.deleteItem(id);
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 module.exports = todoController;

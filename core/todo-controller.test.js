@@ -15,10 +15,24 @@ test('post item', async () => {
   expect.assertions(1);
   try {
     const newItem = await todoController.postItem({
-      text: "from test",
+      text: "from controller test",
     });
     const item = await todoController.getItem(newItem.id);
     expect(!!item).toBe(true);
+  } catch (error) {
+    expect(error).toMatch("error");
+  }
+});
+
+test('delete item', async () => {
+  expect.assertions(1);
+  try {
+    const newItem = await todoController.postItem({
+      text: "from controller test",
+    });
+    await todoController.deleteItem(newItem.id);
+    const item = await todoController.getItem(newItem.id);
+    expect(!!item).toBe(false);
   } catch (error) {
     expect(error).toMatch("error");
   }

@@ -48,4 +48,14 @@ todoRouter.post('/items', async function(req, res, next) {
   }
 });
 
+todoRouter.delete("/items/:id", async function (req, res, next) {
+  const id = req.params.id;
+  try {
+    await todoController.deleteItem(id);
+    res.end();
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = todoRouter;

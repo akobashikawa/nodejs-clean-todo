@@ -50,6 +50,17 @@ const todoService = {
       throw error;
     }
   },
+
+  deleteItem(id) {
+    try {
+      const foundIndex = this.items.findIndex((item) => id === item.id);
+      if (foundIndex != -1) {
+        this.items.splice(foundIndex, 1);
+      }
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 module.exports = todoService;

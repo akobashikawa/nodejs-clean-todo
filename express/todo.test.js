@@ -30,4 +30,16 @@ describe('Test /todo', () => {
     expect(item.id == newItem.id).toBe(true);
   });
   
+  test('delete item', async () => {
+    let response = await request(app).post("/todo/items")
+      .send({
+        text: "from app test",
+      });
+    const newItem = JSON.parse(response.text);
+
+    await request(app).delete(`/todo/items/${newItem.id}`);
+    response = await request(app).get(`/todo/items/${newItem.id}`);
+    expect(!!response.text).toBe(false);
+  });
+  
 });
