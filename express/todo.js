@@ -32,12 +32,10 @@ todoRouter.get('/items', async function(req, res, next) {
 todoRouter.post('/items', async function(req, res, next) {
   try {
     const newItem = req.body;
-    console.log(!newItem);
     if (_.isEmpty(newItem)) {
       throw {
         status: 400,
         message: "newItem is required",
-        newItem,
       };
     }
   
