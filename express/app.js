@@ -5,8 +5,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const hello = require('./hello.js');
-const todo = require('./todo.js');
+const hello = require('./hello');
+const todo = require('./todo');
 
 app.use('/hello', hello);
 app.use('/todo', todo);
