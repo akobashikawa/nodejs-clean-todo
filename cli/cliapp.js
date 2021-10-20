@@ -14,7 +14,7 @@ const cliapp = {
     this[route] = adapter;
   },
 
-  main(args = []) {
+  async main(args = []) {
     let response = '';
     const route = args[0];
     if (!route) {
@@ -32,7 +32,12 @@ const cliapp = {
       }
 
       if (typeof this[route][command] === 'function') {
-        response += this[route][command](args.slice(1));
+        const result = await this[route][command](args.slice(1));
+        try {
+          response += JSON.stringify(result);
+        } catch (error) {
+          response += result;
+        }
       } else {
         response += this._showSyntax();
         response += `\nCommand '${command}' not found`;

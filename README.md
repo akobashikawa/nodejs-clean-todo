@@ -16,3 +16,6 @@ Node clean architecture studio.
     - express/hello.js is an adapter controller-framework
   - express/todo is a middleware
     - express/todo.js is an adapter controller-framework
+- cli/app.js uses cliapp as framework
+  - cli/hello.js is an adapter controller-framework
+  - cli/todo.js is an adapter controller-framework

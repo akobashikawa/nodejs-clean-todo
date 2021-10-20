@@ -2,5 +2,12 @@
 const app = require('./app').create();
 
 const args = process.argv.slice(2);
-const response = app.main(args);
-console.log(response);
+
+(async () => {
+  try {
+    const response = await app.main(args);
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+})();
