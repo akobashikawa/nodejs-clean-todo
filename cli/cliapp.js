@@ -34,6 +34,7 @@ const cliapp = {
       if (typeof this[route][command] === 'function') {
         const result = await this[route][command](args.slice(1));
         try {
+          const obj = JSON.parse(result);// ensure is an object
           response += JSON.stringify(result);
         } catch (error) {
           response += result;
