@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require("cors");
 
 // json request support
 app.use(express.json());
@@ -7,6 +8,9 @@ app.use(express.urlencoded({ extended: false }));
 
 const hello = require('./hello');
 const todo = require('./todo');
+
+app.use( cors() );
+app.options("*", cors());
 
 app.use('/hello', hello);
 app.use('/todo', todo);

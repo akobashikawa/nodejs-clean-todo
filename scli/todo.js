@@ -1,15 +1,10 @@
-const _ = require("lodash");
-
-const todoService = require("../core/todo-service").create();
-const todoController = require("../core/todo-controller").create({
-  todoService,
-});
+const axios = require("axios");
 
 const todo = {
   async getItems() {
     try {
-      const items = await todoController.getItems();
-      return items;
+      const response = await axios.get(`http://localhost:3000/todo/items`);
+      return response.data;
     } catch (error) {
       throw error;
     }
@@ -28,8 +23,8 @@ const todo = {
         text,
       };
 
-      const item = await todoController.postItem(newItem);
-      return item;
+      const response = await axios.post(`http://localhost:3000/todo/items`, {data: newItem});
+      return response.data;
     } catch (error) {
       throw error;
     }

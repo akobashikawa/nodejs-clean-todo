@@ -37,7 +37,7 @@ const cliapp = {
           const obj = JSON.parse(result);// ensure is an object
           response += JSON.stringify(result);
         } catch (error) {
-          response += result;
+          response = response ? response + result : result;
         }
       } else {
         response += this._showSyntax();

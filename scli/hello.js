@@ -1,10 +1,15 @@
-const helloController = require("../core/hello-controller").create();
+const axios = require('axios');
 
 const hello = {
-  hello(args) {
+  async hello(args) {
     const name = args[1];
-    const response = helloController.hello(name);
-    return response;
+    const qs = name ? `?name=${name}` : '';
+    try {
+      const response = await axios.get(`http://localhost:3000/hello${qs}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   },
 };
 
